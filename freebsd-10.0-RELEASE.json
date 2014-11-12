@@ -18,9 +18,10 @@
                 "bsdinstall script /tmp/installerconfig<enter>"
             ],
             "guest_os_type": "FreeBSD_64",
-            "shutdown_command": "echo 'vagrant' | sudo -E -S sh -c 'shutdown -p now'",
+            "shutdown_command": "sleep 5; sudo shutdown -p now",
             "ssh_username": "vagrant",
-            "ssh_password": "vagrant"
+            "ssh_password": "vagrant",
+            "headless": true
         }
     ],
 
@@ -33,7 +34,7 @@
             ],
             "override": {
                 "virtualbox-iso": {
-                    "execute_command": "echo 'vagrant' | {{.Vars}} sudo -E -S sh '{{.Path}}'"
+                    "execute_command": "sudo -E -S sh '{{.Path}}'"
                 }
             }
         }
@@ -42,7 +43,8 @@
     "post-processors": [
         {
             "type": "vagrant",
-            "keep_input_artifact": false
+            "keep_input_artifact": false,
+            "vagrantfile_template": "./Vagrantfile"
         }
     ]
 }
