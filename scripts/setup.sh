@@ -10,7 +10,7 @@ chown -R vagrant ~/.ssh
 
 # Update
 # Non interactive mode from: http://serverfault.com/a/508902
-sed 's/\[ ! -t 0 \]/false/' /usr/sbin/freebsd-update > /tmp/freebsd-update
-chmod +x /tmp/freebsd-update
-/tmp/freebsd-update fetch >/dev/null
-freebsd-update install
+#sed 's/\[ ! -t 0 \]/false/' /usr/sbin/freebsd-update > /tmp/freebsd-update
+#chmod +x /tmp/freebsd-update
+#/tmp/freebsd-update fetch >/dev/null
+#freebsd-update install
