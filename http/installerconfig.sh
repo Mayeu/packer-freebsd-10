@@ -8,6 +8,8 @@ sshd_enable="YES"
 # Set dumpdev to "AUTO" to enable crash dumps, "NO" to disable
 dumpdev="AUTO"
 local_unbound_enable="YES"
+vboxguest_enable="YES"
+vboxservice_enable="YES"
 EOF
 
 # SSH config
@@ -19,8 +21,10 @@ service local_unbound onestart
 # Activate pkg
 ASSUME_ALWAYS_YES=YES pkg bootstrap
 
-# Install sudo, activate wheel
-ASSUME_ALWAYS_YES=YES pkg install sudo
+# Install sudo & virtualbox additions
+ASSUME_ALWAYS_YES=YES pkg install sudo emulators/virtualbox-ose-additions
+
+# Activate the wheel group for the vagrant user
 sed -i .bak -e 's/^# %wheel ALL=(ALL) ALL$/%wheel ALL=(ALL) NOPASSWD: ALL/' /usr/local/etc/sudoers
 
 # Add the vagrant user, and add it to the wheel group
